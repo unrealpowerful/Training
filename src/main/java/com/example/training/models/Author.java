@@ -16,7 +16,7 @@ public class Author {
 
     private String name, surname;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "author")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "creator")
     Set<Book> books;
 
     public Author() {

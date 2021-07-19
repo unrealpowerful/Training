@@ -1,5 +1,6 @@
 package com.example.training.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -14,17 +15,18 @@ public class Book {
 
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JsonBackReference
     @JoinColumn(name = "author_id", nullable = false)
-    private Author author;
+    private Author creator;
 
     public Book() {
 
     }
 
-    public Book(String name, Author author) {
+    public Book(String name, Author creator) {
         this.name = name;
-        this.author = author;
+        this.creator = creator;
     }
 
     public Long getId() {
@@ -43,11 +45,11 @@ public class Book {
         this.name = name;
     }
 
-    public Author getAuthor() {
-        return author;
+    public Author getCreator() {
+        return creator;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setCreator(Author author) {
+        this.creator = creator;
     }
 }

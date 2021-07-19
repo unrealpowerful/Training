@@ -49,7 +49,6 @@ public class BookRestController {
     @DeleteMapping(value = "/books/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") Long id) {
         final boolean deleted = bookService.delete(id);
-
         return deleted
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
